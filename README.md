@@ -1,8 +1,8 @@
-
 # 🎯 RiskCanvas
 ### AI-Powered Financial Simulator
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Gemini](https://img.shields.io/badge/Gemini-AI-4285F4?style=for-the-badge&logo=google)
 ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=for-the-badge&logo=tailwindcss)
 ![Three.js](https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js)
@@ -11,7 +11,7 @@
 
 > **Practice without risk. Analyze with AI. Trade with confidence.**
 
-RiskCanvas distills the complexity of global finance into crystalline clarity. Simulate real equity trading with live market data, get AI-powered risk analysis from Google Gemini, and build market intuition — without risking a single rupee.
+RiskCanvas bridges the gap between theoretical market education and real-world trading intuition. By combining live market data with Google Gemini AI, the platform lets users simulate high-leverage trades, experience real-time market fluctuations, and master risk management — without risking a single rupee.
 
 ---
 
@@ -21,14 +21,45 @@ RiskCanvas distills the complexity of global finance into crystalline clarity. S
 
 ## ✨ Features
 
-- 📈 **Stock Simulation** — Live intraday prices via Yahoo Finance, auto-converted to INR in real time. Full P&L tracking, leverage controls, and position sizing — behaves like a real brokerage.
-- 💼 **Live Portfolio Viewer** — Real-time dashboard tracking all simulated positions, gains, losses, and sector exposure as prices move.
-- 🤖 **AI Portfolio Analysis** — One-click Google Gemini analysis reads your leverage, volatility exposure, and sector concentration — outputs a plain-English risk report with specific recommendations.
-- 😨 **Fear & Greed Index** — Live global sentiment score from Alternative.me, translated by Gemini into actionable trading guidance. No jargon.
-- 💸 **Loss Probability Calculator** — Input your position and leverage, see your exact loss at 10%, 20%, and 40% drawdown levels before you trade.
-- 🔥 **Stress Test** — Run your current portfolio through historical Black Swan scenarios: 2008 Financial Crisis, COVID March 2020 crash, and a 40% market wipeout.
-- 💬 **StockAI Chatbot** — Gemini-powered floating assistant that reads the live state of your portfolio and market data to answer questions without hallucinating external market information.
-- 📄 **PDF Risk Reports** — Export your portfolio analysis as a downloadable PDF report, generated entirely client-side via jsPDF.
+### 📈 Stock Simulation Sandbox
+The core trading engine for building hypothetical portfolios with real market behavior.
+- Live tape movement simulation — execute BUY and SELL orders tracked against local persistence
+- **Jitter Engine** — algorithmic price jitter updated every few seconds to emulate high-frequency market noise above the Yahoo Finance baseline
+- Algorithmic search across global stocks and cryptocurrencies
+- Max sizing calculator — dynamically computes maximum shares on margin relative to available buying power
+
+### 💼 Live Portfolio Dashboard
+Real-time command center for observing simulated capital.
+- Realized and Unrealized P&L tracking, updated dynamically against the live data feed
+- Sector breakdown — visualizes portfolio density across TECH, ENERGY, CRYPTO and more to reveal concentration risk
+
+### 🤖 AI Risk Analysis *(Flagship Feature)*
+One-click Gemini-powered algorithmic risk evaluator.
+- Captures your active portfolio (leverage + specific assets) and injects it into a structured Gemini prompt
+- Plain-English output — identifies hidden correlations, warns against over-leverage, grades portfolio resilience
+- **PDF Export** — compiles the AI assessment into a downloadable business report via jsPDF
+
+### 😨 Fear & Greed Index
+Behavioral economics dashboard powered by live sentiment data.
+- Fetches the global emotion score from Alternative.me in real time
+- Gemini writes a tactical breakdown based on the exact day's score — *"Score is 12: Extreme Fear. Capital preservation is priority."*
+
+### 💸 Loss Probability Calculator
+Predictive downside visualization before taking a position.
+- Input asset, position size, and leverage multiplier (e.g. 5x)
+- Renders exact cash devastation at 10%, 20%, and 40% drawdown levels
+
+### 🔥 Stress Test — Black Swan Emulator
+Run your active portfolio through historical macro-shocks.
+- 2008 Housing Crash scenario
+- 2020 COVID Flash Crash scenario
+- See potential drawdown limits before the market finds them for you
+
+### 💬 StockAI Floating Chatbot
+Omnipresent AI assistant available across all routes.
+- Persistent across the entire platform — always accessible
+- Context-aware — accesses both general market knowledge and live platform state, with no hallucination outside financial logic
+- Powered by Google Gemini (`gemini-pro`)
 
 ---
 
@@ -36,26 +67,26 @@ RiskCanvas distills the complexity of global finance into crystalline clarity. S
 
 | Layer | Technology |
 |-------|-----------|
-| **Framework** | Next.js 15, React |
-| **Styling** | Tailwind CSS v4, Framer Motion, GSAP + ScrollTrigger |
-| **Scrolling** | Lenis (@studio-freight/lenis) |
+| **Framework** | Next.js 15 (App Router), React 19 |
+| **Language** | TypeScript + JavaScript |
+| **Styling** | Tailwind CSS v4, custom glassmorphism ("No-Line" design system) |
+| **Typography** | Playfair Display + Inter |
+| **Animations** | GSAP (GreenSock), Framer Motion, Lenis smooth scroll |
 | **3D / Canvas** | Three.js, @react-three/fiber, @react-three/drei |
 | **AI** | Google Gemini API (`gemini-pro`) via `@google/generative-ai` |
-| **Data APIs** | Yahoo Finance (proxied), Alternative.me, ExchangeRate API |
-| **UI Components** | Shadcn UI, MagicUI, Lucide React |
-| **Export** | jsPDF (client-side PDF generation) |
-| **Language** | TypeScript |
+| **Compiler** | Next.js 15 Turbopack |
+| **Export** | jsPDF — client-side PDF report generation |
 
 ---
 
-## 📡 APIs Used
+## 📡 API Integrations
 
-| API | Purpose | Auth |
-|-----|---------|------|
-| [Yahoo Finance](https://query1.finance.yahoo.com) | Live intraday stock prices + 30-day historical data | None (proxied via AllOrigins) |
-| [Alternative.me Fear & Greed](https://api.alternative.me/fng/) | Live global market sentiment index | None |
-| [ExchangeRate API](https://api.exchangerate-api.com/v4/latest/USD) | Live USD → INR conversion | None |
-| [Google Gemini](https://aistudio.google.com/) | AI risk analysis, sentiment translation, chatbot | API Key required |
+| API | Endpoint | Purpose |
+|-----|---------|---------|
+| **Yahoo Finance** | `/api/yahoo` (internal Next.js proxy) | Live intraday ticker metrics + 30-day historical chart data |
+| **Alternative.me** | `api.alternative.me/fng/` | Daily Fear & Greed sentiment score (0–100) |
+| **ExchangeRate API** | `api.exchangerate-api.com/v4/latest/USD` | Live USD → INR conversion for all global assets |
+| **Google Gemini** | `@google/generative-ai` | AI risk analysis, sentiment translation, chatbot |
 
 ---
 
@@ -86,13 +117,15 @@ npm install
 cp .env.example .env
 ```
 
-Open `.env` and add your Gemini API key:
+Open `.env` and fill in your Gemini API key:
 
 ```env
 NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 > Get your free API key at [aistudio.google.com](https://aistudio.google.com/) → Create API Key
+
+The ExchangeRate and Fear & Greed endpoints are pre-filled in `.env.example` — no additional keys needed.
 
 ### 4. Run the Development Server
 
@@ -111,33 +144,47 @@ npm run start
 
 ---
 
+## 🔑 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_GEMINI_API_KEY` | Google Gemini API key — powers all AI features | ✅ Yes |
+| `NEXT_PUBLIC_EXCHANGE_RATE_API` | ExchangeRate API endpoint (pre-filled) | ✅ Yes |
+| `NEXT_PUBLIC_FNG_API` | Fear & Greed API endpoint (pre-filled) | ✅ Yes |
+
+---
+
 ## 📁 Project Structure
 
 ```
 riskcanvas/
-├── app/                  # Next.js app router pages
-├── components/           # React components
-│   ├── ui/               # Shadcn + MagicUI base components
-│   ├── StockSimulator/   # Simulation engine
-│   ├── Portfolio/        # Portfolio dashboard
-│   ├── FearGreed/        # Fear & Greed index
-│   ├── StressTest/       # Stress test + loss calculator
-│   └── ChatBot/          # StockAI chatbot
-├── public/               # Static assets + demo screenshot
-├── .env.example          # Environment variable template
-├── .env                  # Your local keys (gitignored)
+├── app/                    # Next.js App Router pages + API routes
+│   └── api/yahoo/          # Internal Yahoo Finance proxy (CORS bypass)
+├── components/             # React components
+│   ├── ui/                 # Base UI components
+│   ├── StockSimulator/     # Trading engine + jitter system
+│   ├── Portfolio/          # Live portfolio dashboard
+│   ├── FearGreed/          # Fear & Greed index + AI translation
+│   ├── StressTest/         # Black Swan emulator + loss calculator
+│   └── ChatBot/            # StockAI floating chatbot
+├── public/                 # Static assets
+│   └── methodology.mp4     # AI methodology explainer video
+├── .env                    # Local environment variables (gitignored)
+├── .env.example            # Environment variable template
 └── README.md
 ```
 
 ---
 
-## 🔑 Environment Variables
+## 🗺️ Future Roadmap
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_GEMINI_API_KEY` | Google Gemini API key for AI features | ✅ Yes |
-| `NEXT_PUBLIC_EXCHANGE_RATE_API` | ExchangeRate API endpoint (pre-filled in .env.example) | ✅ Yes |
-| `NEXT_PUBLIC_FNG_API` | Fear & Greed API endpoint (pre-filled in .env.example) | ✅ Yes |
+| Phase | Feature |
+|-------|---------|
+| **Post-MVP** | User authentication via NextAuth / Clerk |
+| **Post-MVP** | PostgreSQL database (Prisma / Drizzle) for portfolio persistence |
+| **Post-MVP** | WebSocket feeds replacing the jitter engine with true Level 2 market data |
+| **Scale** | NSE/BSE stock universe expansion |
+| **Scale** | White-label B2B product for brokers (Zerodha, Upstox, Groww) |
 
 ---
 
@@ -155,10 +202,10 @@ Built for the **Finvasia Innovation Hackathon 2026** — *Leveraging Emerging Tr
 
 | Role | Responsibility |
 |------|---------------|
-| **Team Lead + Frontend** | Architecture, 3D visualizations, animations, Three.js globe |
+| **Team Lead + Frontend** | Architecture, 3D visualizations, GSAP animations, Three.js globe |
 | **AI Integration** | Gemini API — risk engine, sentiment analyzer, StockAI chatbot |
-| **Data & APIs** | Yahoo Finance proxy, ExchangeRate, simulation engine, INR conversion |
-| **UI/UX Design** | Design system, glassmorphism aesthetic, component library |
+| **Data & APIs** | Yahoo Finance proxy, ExchangeRate, jitter engine, INR conversion |
+| **UI/UX Design** | Glassmorphism design system, component library, editorial typography |
 
 ---
 
