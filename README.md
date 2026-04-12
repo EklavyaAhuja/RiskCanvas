@@ -101,8 +101,8 @@ Omnipresent AI assistant available across all routes.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/riskcanvas.git
-cd riskcanvas
+git clone https://github.com/EklavyaAhuja/RiskCanvas.git
+cd RiskCanvas
 ```
 
 ### 2. Install Dependencies
