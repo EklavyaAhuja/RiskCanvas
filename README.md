@@ -15,7 +15,7 @@ RiskCanvas distills the complexity of global finance into crystalline clarity. S
 
 ---
 
-![RiskCanvas Dashboard](./public/image.png)
+![RiskCanvas Dashboard](./public/videos/image.png)
 
 ---
 
