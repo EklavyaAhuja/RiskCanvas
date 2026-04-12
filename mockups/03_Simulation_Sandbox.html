@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulation Sandbox | RiskCanvas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "tertiary-container": "#ab5656",
+                        "secondary": "#b6250d",
+                        "on-tertiary-container": "#fff1f0",
+                        "on-secondary-fixed-variant": "#8f1100",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed-variant": "#402bb7",
+                        "background": "#f9f9f9",
+                        "surface-tint": "#5848cf",
+                        "inverse-primary": "#c6bfff",
+                        "tertiary": "#8d3f3f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e2e2e2",
+                        "primary-fixed": "#e4dfff",
+                        "outline": "#787585",
+                        "outline-variant": "#c8c4d6",
+                        "on-secondary-container": "#590700",
+                        "secondary-fixed": "#ffdad3",
+                        "on-tertiary-fixed-variant": "#782f30",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9f9",
+                        "primary-container": "#6a5be2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "tertiary-fixed-dim": "#ffb3b1",
+                        "surface-container": "#eeeeee",
+                        "on-primary-container": "#f7f2ff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1b1b1b",
+                        "on-tertiary-fixed": "#3e0409",
+                        "on-surface-variant": "#474554",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9f9",
+                        "on-surface": "#1b1b1b",
+                        "on-secondary-fixed": "#3f0400",
+                        "primary-fixed-dim": "#c6bfff",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary-container": "#fd583b",
+                        "primary": "#5140c8",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#160066"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["Source Code Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 flex flex-col py-8 px-4 shadow-[inset_-1px_0_0_0_rgba(0,0,0,0.05)] z-50">
+<div class="mb-10 px-2">
+<h1 class="text-2xl font-bold tracking-tighter text-slate-900">RiskCanvas</h1>
+<p class="text-xs text-slate-500 font-medium">The Digital Architect</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-indigo-600 font-semibold border-r-2 border-indigo-600 transition-colors duration-200 font-['Inter'] tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors duration-200 font-['Inter'] tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+                Trade
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors duration-200 font-['Inter'] tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="newspaper">newspaper</span>
+                News
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors duration-200 font-['Inter'] tracking-tight text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200/50">
+<button class="w-full py-3 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-semibold text-sm shadow-md active:scale-[0.98] transition-all">
+                New Simulation
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-slate-200">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a middle aged man with glasses and a kind expression in corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMqD8qfjKZmAJEG9SPbIjYNh0XbaMhfBFEdz9M6JJALx531HanVWlbKXuNLUBijVmTJE8VY16YA1vFXWSBGYy_WH4XySpnr_19sh5fBwdDyKLY29ZoxLR3W9vng1fboFJP_43qgQyvaU75WhGjjbHkLj9c5NVcAs4CeJBdIRZHs9S1jzGIk6XTS1CtJnio-ll0TiQ-a9jATXu5siiwwDVybbeyuIf9q0uhMdPHnu3qhAegK-Y1Bzcdm03kndUbF54wp6_xT2hYg1ED"/>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900">Alex Chen</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Architect Pro</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/70 backdrop-blur-xl z-40 flex justify-between items-center px-8 shadow-sm">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-extrabold tracking-tight text-on-surface">Simulation Sandbox</h2>
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+<a class="text-slate-500 hover:text-slate-900 transition-all" href="#">Portfolio</a>
+<a class="text-indigo-600 border-b-2 border-indigo-600 pb-5 transition-all" href="#">Analysis</a>
+<a class="text-slate-500 hover:text-slate-900 transition-all" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-xs w-64 focus:ring-2 focus:ring-primary/20" placeholder="Search markets..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Portfolio Summary Card (High Priority) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-8 shadow-sm transition-hover hover:bg-surface-bright flex flex-col md:flex-row gap-8">
+<div class="flex-1 space-y-6">
+<div>
+<p class="text-sm font-medium text-slate-500 uppercase tracking-widest mb-1">Portfolio Balance</p>
+<h3 class="text-5xl font-extrabold text-on-surface tracking-tight">100,000 <span class="text-primary-container">RS</span></h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-xl">
+<p class="text-xs text-slate-500 mb-1">Total Profit/Loss</p>
+<p class="text-xl font-mono font-semibold text-primary">+12,450.00</p>
+<p class="text-xs text-primary font-medium mt-1">↑ 14.2%</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl">
+<p class="text-xs text-slate-500 mb-1">Simulated Yield</p>
+<p class="text-xl font-mono font-semibold text-on-surface">5.2%</p>
+<p class="text-xs text-slate-400 mt-1">Annualized</p>
+</div>
+</div>
+<!-- Signature Component: Risk Gauge -->
+<div class="space-y-2 pt-4">
+<div class="flex justify-between text-xs font-bold text-slate-600">
+<span>STRUCTURAL RISK</span>
+<span class="text-secondary">MODERATE</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full w-1/3 bg-primary"></div>
+<div class="h-full w-1/4 bg-primary-container"></div>
+<div class="h-full w-1/6 bg-secondary-container"></div>
+</div>
+</div>
+</div>
+<!-- Donut Chart Mockup -->
+<div class="w-full md:w-64 flex flex-col items-center justify-center relative">
+<div class="relative w-48 h-48">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#e4dfff" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#5140c8" stroke-dasharray="60 40" stroke-dashoffset="0" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#fd583b" stroke-dasharray="15 85" stroke-dashoffset="-60" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-bold text-on-surface">60%</span>
+<span class="text-[10px] text-slate-500 uppercase">Equities</span>
+</div>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold text-slate-600">Tech</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="text-[10px] font-bold text-slate-600">Energy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insight Box (Architectural Accent) -->
+<div class="col-span-12 lg:col-span-4 bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-white relative overflow-hidden shadow-xl">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 space-y-4">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h4 class="text-lg font-bold tracking-tight">AI Insights</h4>
+</div>
+<p class="text-sm leading-relaxed text-indigo-50/90 font-medium">
+<span class="font-bold text-white block mb-2">Structural Analysis:</span>
+                            Your portfolio shows high exposure to the Tech sector. Consider diversifying into Energy or Consumer Staples to balance structural risk during Q3 volatility.
+                        </p>
+<button class="mt-4 px-6 py-2 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold hover:bg-white/30 transition-all">
+                            View Rebalance Plan
+                        </button>
+</div>
+</div>
+<!-- Owned Stocks Section -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-low rounded-xl p-8">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h4 class="text-2xl font-extrabold tracking-tight text-on-surface">Owned Stocks</h4>
+<p class="text-sm text-slate-500">Live performance of your simulated assets</p>
+</div>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                            VIEW ALL <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-6">
+<!-- Stock Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">NVDA</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface">NVIDIA Corp.</h5>
+<p class="text-xs text-slate-500">Technology • Semiconductors</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-mono font-bold text-on-surface">925.14 RS</p>
+<p class="text-xs text-primary font-bold">+2.45%</p>
+</div>
+</div>
+<!-- Stock Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">TSLA</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface">Tesla, Inc.</h5>
+<p class="text-xs text-slate-500">Consumer Discretionary • EV</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-mono font-bold text-on-surface">178.50 RS</p>
+<p class="text-xs text-secondary font-bold">-0.82%</p>
+</div>
+</div>
+<!-- Stock Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center font-bold text-slate-400">AAPL</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface">Apple Inc.</h5>
+<p class="text-xs text-slate-500">Technology • Electronics</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-mono font-bold text-on-surface">183.63 RS</p>
+<p class="text-xs text-primary font-bold">+1.12%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Transactions Section -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/10">
+<div class="mb-8">
+<h4 class="text-xl font-extrabold tracking-tight text-on-surface">Recent Transactions</h4>
+<p class="text-sm text-slate-500">Simulation trade history</p>
+</div>
+<div class="space-y-8">
+<!-- Transaction Item -->
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold text-on-surface">Bought 365 XLC</p>
+<p class="text-sm font-mono font-bold text-on-surface">-24,500 RS</p>
+</div>
+<div class="flex justify-between items-center mt-1">
+<p class="text-xs text-slate-400">Communication Services ETF</p>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">OCT 24, 2023</p>
+</div>
+</div>
+</div>
+<!-- Transaction Item -->
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold text-on-surface">Bought 66 SPY</p>
+<p class="text-sm font-mono font-bold text-on-surface">-32,100 RS</p>
+</div>
+<div class="flex justify-between items-center mt-1">
+<p class="text-xs text-slate-400">S&amp;P 500 Trust ETF</p>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">OCT 21, 2023</p>
+</div>
+</div>
+</div>
+<!-- Transaction Item -->
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">sell</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold text-on-surface">Sold 120 VOO</p>
+<p class="text-sm font-mono font-bold text-primary">+45,230 RS</p>
+</div>
+<div class="flex justify-between items-center mt-1">
+<p class="text-xs text-slate-400">Vanguard S&amp;P 500 ETF</p>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">OCT 15, 2023</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-10 py-3 border border-outline-variant/30 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 transition-colors uppercase tracking-widest">
+                        Download Full Statement
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Suppressed as per rules for Details/Settings/Transactional, but Sandbox is a Dashboard variant) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="group flex items-center gap-2 p-4 bg-primary text-white rounded-full shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+<span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 font-bold text-sm">Quick Trade</span>
+</button>
+</div>
+</body></html>

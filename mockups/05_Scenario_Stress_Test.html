@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb3b1",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary-container": "#6a5be2",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1b1b1b",
+                        "on-primary-container": "#f7f2ff",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-tertiary-fixed": "#3e0409",
+                        "on-surface-variant": "#474554",
+                        "on-surface": "#1b1b1b",
+                        "surface": "#f9f9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#3f0400",
+                        "surface-container-low": "#f3f3f3",
+                        "primary-fixed-dim": "#c6bfff",
+                        "secondary-container": "#fd583b",
+                        "primary": "#5140c8",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#160066",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#ab5656",
+                        "secondary": "#b6250d",
+                        "on-tertiary-container": "#fff1f0",
+                        "secondary-fixed-dim": "#ffb4a5",
+                        "inverse-surface": "#303030",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed-variant": "#402bb7",
+                        "on-secondary-fixed-variant": "#8f1100",
+                        "inverse-primary": "#c6bfff",
+                        "surface-tint": "#5848cf",
+                        "background": "#f9f9f9",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#8d3f3f",
+                        "error-container": "#ffdad6",
+                        "outline": "#787585",
+                        "surface-variant": "#e2e2e2",
+                        "primary-fixed": "#e4dfff",
+                        "surface-bright": "#f9f9f9",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdad3",
+                        "on-tertiary-fixed-variant": "#782f30",
+                        "outline-variant": "#c8c4d6",
+                        "on-secondary-container": "#590700"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"],
+                        "mono": ["Source Code Pro", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="flex flex-col h-full fixed left-0 top-0 h-screen w-64 bg-slate-50 border-r-0 z-50">
+<div class="p-8">
+<h1 class="text-2xl font-bold tracking-tighter text-[#5140C8]">RiskCanvas</h1>
+<p class="text-xs text-slate-500 font-['Inter'] tracking-tight">The Financial Architect</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-200 transition-colors duration-200 rounded-xl font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-200 transition-colors duration-200 rounded-xl font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">analytics</span> Analysis
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-200 transition-colors duration-200 rounded-xl font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">insert_chart</span> Fear Index
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-200 transition-colors duration-200 rounded-xl font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">calculate</span> Calculator
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5140C8] font-bold border-r-2 border-[#5140C8] bg-slate-100 rounded-l-xl font-['Inter'] text-sm" href="#">
+<span class="material-symbols-outlined">speed</span> Stress Test
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-200 transition-colors duration-200 rounded-xl font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="p-6">
+<button class="w-full py-3 px-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-semibold text-sm shadow-sm hover:scale-[0.98] transition-all">
+                New Analysis
+            </button>
+</div>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="flex justify-between items-center h-16 px-8 sticky top-0 z-40 ml-64 glass-header border-b border-slate-100/50">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search scenarios..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-slate-600 hover:text-[#5140C8] transition-colors">notifications</button>
+<div class="flex items-center gap-3 border-l pl-6 border-slate-200">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">Alex Thompson</p>
+<p class="text-[10px] text-slate-500 font-mono">ID: 8821-X9</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-slate-400">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 p-10 space-y-12">
+<!-- Section 1: Scenario Selector -->
+<section>
+<div class="mb-8">
+<h2 class="text-3xl font-extrabold tracking-tighter text-on-surface mb-2">Scenario Stress Test</h2>
+<p class="text-on-surface-variant font-body leading-relaxed max-w-2xl">Validate your portfolio resilience by simulating historical market downturns. The architect's tool for preparing for the unpredictable.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Scenario Card 1 -->
+<button class="group text-left p-6 rounded-xl bg-surface-container-lowest border-2 border-primary ring-offset-2 transition-all hover:bg-surface-bright">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">emergency_home</span>
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold rounded uppercase tracking-wider">Critical</span>
+</div>
+<h3 class="font-bold text-xl mb-1">2008 Financial Crisis</h3>
+<p class="text-sm text-on-surface-variant mb-4">The Great Recession: Global banking collapse and housing market implosion.</p>
+<div class="flex items-center gap-2 text-secondary font-mono font-bold text-lg">
+<span class="material-symbols-outlined text-sm">trending_down</span> -51.2%
+                    </div>
+</button>
+<!-- Scenario Card 2 -->
+<button class="group text-left p-6 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container-highest">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-slate-400 text-3xl group-hover:text-primary transition-colors">coronavirus</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded uppercase tracking-wider">Volatile</span>
+</div>
+<h3 class="font-bold text-xl mb-1">COVID-19 Crash</h3>
+<p class="text-sm text-on-surface-variant mb-4">2020 Pandemic: Rapid liquidity dry-up followed by unprecedented stimulus.</p>
+<div class="flex items-center gap-2 text-on-surface-variant font-mono font-bold text-lg">
+<span class="material-symbols-outlined text-sm">trending_down</span> -33.9%
+                    </div>
+</button>
+<!-- Scenario Card 3 -->
+<button class="group text-left p-6 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container-highest">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-slate-400 text-3xl group-hover:text-primary transition-colors">monitoring</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded uppercase tracking-wider">Prolonged</span>
+</div>
+<h3 class="font-bold text-xl mb-1">2022 Bear Market</h3>
+<p class="text-sm text-on-surface-variant mb-4">Inflationary Pivot: Rate hikes and tech sector valuation reset.</p>
+<div class="flex items-center gap-2 text-on-surface-variant font-mono font-bold text-lg">
+<span class="material-symbols-outlined text-sm">trending_down</span> -25.4%
+                    </div>
+</button>
+</div>
+</section>
+<!-- Section 2: Before & After Comparison -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<!-- Portfolio Before -->
+<div class="relative bg-surface-container-lowest p-8 rounded-xl overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="flex justify-between items-center mb-10">
+<div>
+<p class="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-1">Current State</p>
+<h4 class="text-2xl font-bold">Standard Portfolio</h4>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-400 mb-1">Total Valuation</p>
+<p class="text-3xl font-mono font-bold text-on-surface">$1,482,000</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-end justify-between h-32 gap-1 px-4">
+<div class="w-full bg-primary/10 h-full rounded-t-lg transition-all group-hover:bg-primary/20"></div>
+<div class="w-full bg-primary/10 h-[80%] rounded-t-lg transition-all group-hover:bg-primary/20"></div>
+<div class="w-full bg-primary/10 h-[95%] rounded-t-lg transition-all group-hover:bg-primary/20"></div>
+<div class="w-full bg-primary/10 h-[70%] rounded-t-lg transition-all group-hover:bg-primary/20"></div>
+<div class="w-full bg-primary h-[85%] rounded-t-lg"></div>
+</div>
+<div class="flex justify-between text-[10px] font-mono text-slate-400 px-4 uppercase">
+<span>Q1-23</span>
+<span>Q2-23</span>
+<span>Q3-23</span>
+<span>Q4-23</span>
+<span class="text-primary font-bold">Today</span>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="text-[10px] text-slate-500 uppercase mb-1">Diversification</p>
+<p class="font-bold">High (8.4/10)</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="text-[10px] text-slate-500 uppercase mb-1">Standard Dev</p>
+<p class="font-bold font-mono">14.2%</p>
+</div>
+</div>
+</div>
+<!-- Portfolio After -->
+<div class="relative bg-surface-container-lowest p-8 rounded-xl overflow-hidden shadow-2xl">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="flex justify-between items-center mb-10">
+<div>
+<p class="text-xs font-bold text-secondary uppercase tracking-[0.2em] mb-1">Stressed Outcome</p>
+<h4 class="text-2xl font-bold">2008 Crisis Impact</h4>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-400 mb-1">Projected Valuation</p>
+<p class="text-3xl font-mono font-bold text-secondary">$723,216</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-end justify-between h-32 gap-1 px-4 relative">
+<div class="w-full bg-slate-100 h-full rounded-t-lg opacity-40"></div>
+<div class="w-full bg-slate-100 h-[80%] rounded-t-lg opacity-40"></div>
+<div class="w-full bg-slate-100 h-[95%] rounded-t-lg opacity-40"></div>
+<div class="w-full bg-slate-100 h-[70%] rounded-t-lg opacity-40"></div>
+<div class="w-full bg-secondary h-[42%] rounded-t-lg"></div>
+<!-- Marker line -->
+<div class="absolute bottom-[85%] left-0 w-full border-t border-dashed border-slate-300"></div>
+</div>
+<div class="flex justify-between text-[10px] font-mono text-slate-400 px-4 uppercase">
+<span>Pre-Crisis</span>
+<span>-3 Mo</span>
+<span>-2 Mo</span>
+<span>-1 Mo</span>
+<span class="text-secondary font-bold">Bottom</span>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-2 gap-4">
+<div class="p-4 bg-secondary-fixed rounded-lg">
+<p class="text-[10px] text-on-secondary-fixed-variant uppercase mb-1">Equity Drawdown</p>
+<p class="font-bold text-secondary">-58.2%</p>
+</div>
+<div class="p-4 bg-secondary-fixed rounded-lg">
+<p class="text-[10px] text-on-secondary-fixed-variant uppercase mb-1">Recovery Window</p>
+<p class="font-bold">~48 Months</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Detailed Breakdown -->
+<section class="bg-surface-container-lowest rounded-2xl p-10 overflow-hidden relative">
+<div class="mb-10">
+<h3 class="text-2xl font-bold tracking-tight mb-2">Asset Class Performance Breakdown</h3>
+<p class="text-on-surface-variant text-sm">Detailed granular impact on specific holding categories during the simulation.</p>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container-high">
+<th class="pb-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4">Asset Class</th>
+<th class="pb-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4">Weight</th>
+<th class="pb-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4">Beta</th>
+<th class="pb-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4 text-right">Pre-Crash Val</th>
+<th class="pb-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4 text-right">Post-Crash Val</th>
+<th class="pb-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-4 text-right">Variance</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-bold">Large Cap Equity</span>
+</div>
+</td>
+<td class="py-6 px-4 font-mono text-sm">45%</td>
+<td class="py-6 px-4 font-mono text-sm">1.05</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$666,900</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$278,764</td>
+<td class="py-6 px-4 text-right">
+<span class="bg-secondary-fixed text-secondary px-3 py-1 rounded-full text-xs font-bold font-mono">-58.2%</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="font-bold">International Tech</span>
+</div>
+</td>
+<td class="py-6 px-4 font-mono text-sm">20%</td>
+<td class="py-6 px-4 font-mono text-sm">1.45</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$296,400</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$103,147</td>
+<td class="py-6 px-4 text-right">
+<span class="bg-secondary-fixed text-secondary px-3 py-1 rounded-full text-xs font-bold font-mono">-65.2%</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-slate-400"></div>
+<span class="font-bold">Fixed Income (Bonds)</span>
+</div>
+</td>
+<td class="py-6 px-4 font-mono text-sm">25%</td>
+<td class="py-6 px-4 font-mono text-sm">0.12</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$370,500</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$385,320</td>
+<td class="py-6 px-4 text-right">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold font-mono">+4.0%</span>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-amber-400"></div>
+<span class="font-bold">Commodities (Gold)</span>
+</div>
+</td>
+<td class="py-6 px-4 font-mono text-sm">10%</td>
+<td class="py-6 px-4 font-mono text-sm">-0.05</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$148,200</td>
+<td class="py-6 px-4 font-mono text-sm text-right">$165,984</td>
+<td class="py-6 px-4 text-right">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold font-mono">+12.0%</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Signature Component: Risk Gauge -->
+<div class="mt-12 p-8 border-t border-surface-container">
+<div class="flex justify-between items-center mb-6">
+<h5 class="text-sm font-bold uppercase tracking-widest text-slate-500">Overall Portfolio Fragility</h5>
+<span class="text-2xl font-mono font-extrabold text-secondary">High Risk</span>
+</div>
+<div class="relative h-4 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-tertiary-container to-secondary"></div>
+<!-- Marker -->
+<div class="absolute left-[78%] top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-10"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-mono font-bold text-slate-400">
+<span>RESILIENT</span>
+<span>NEUTRAL</span>
+<span class="text-secondary">FRAGILE</span>
+</div>
+</div>
+</section>
+<!-- CTA / Next Steps -->
+<section class="flex flex-col md:flex-row items-center justify-between gap-8 p-10 bg-slate-900 rounded-2xl text-white">
+<div class="space-y-2">
+<h3 class="text-2xl font-bold">Optimization Recommendation</h3>
+<p class="text-slate-400 max-w-xl">Based on the 2008 simulation, increasing your Treasury allocation by <span class="text-white font-mono font-bold">12%</span> would reduce potential drawdown by <span class="text-primary-container font-mono font-bold">18.4%</span>.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-colors">Apply Rebalancing</button>
+<button class="px-6 py-3 rounded-xl border border-slate-700 hover:bg-slate-800 transition-colors font-bold">Download Report</button>
+</div>
+</section>
+</main>
+<!-- Contextual Footer (Architectural Note) -->
+<footer class="ml-64 py-12 px-10 border-t border-slate-100">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-2 space-y-4">
+<h4 class="text-lg font-bold text-slate-300 tracking-tight">RiskCanvas Methodology</h4>
+<p class="text-xs text-slate-400 leading-relaxed font-body">Simulations are based on historical price data including dividends and splits. Results are architectural projections and do not guarantee future performance. Our engine uses Monte Carlo simulations refined by historical fat-tail events to ensure realistic stress testing of modern portfolios.</p>
+</div>
+<div class="space-y-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-500">Legal</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Disclosures</a>
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Term of Service</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-500">Source Control</h4>
+<div class="p-3 bg-surface-container-low rounded font-mono text-[10px] text-slate-500">
+                    Engine V. 4.2.1-Stable<br/>
+                    Last Ref: 2024-MAR-12<br/>
+                    Status: <span class="text-green-600 font-bold">Encrypted</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

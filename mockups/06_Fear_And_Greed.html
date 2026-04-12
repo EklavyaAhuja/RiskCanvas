@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RiskCanvas | Fear &amp; Greed Index</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Source+Code+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb3b1",
+                    "surface-container": "#eeeeee",
+                    "inverse-on-surface": "#f1f1f1",
+                    "primary-container": "#6a5be2",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1b1b1b",
+                    "on-primary-container": "#f7f2ff",
+                    "tertiary-fixed": "#ffdad8",
+                    "on-tertiary-fixed": "#3e0409",
+                    "on-surface-variant": "#474554",
+                    "on-surface": "#1b1b1b",
+                    "surface": "#f9f9f9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#3f0400",
+                    "surface-container-low": "#f3f3f3",
+                    "primary-fixed-dim": "#c6bfff",
+                    "secondary-container": "#fd583b",
+                    "primary": "#5140c8",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#160066",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e8e8e8",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#ab5656",
+                    "secondary": "#b6250d",
+                    "on-tertiary-container": "#fff1f0",
+                    "secondary-fixed-dim": "#ffb4a5",
+                    "inverse-surface": "#303030",
+                    "surface-dim": "#dadada",
+                    "on-primary-fixed-variant": "#402bb7",
+                    "on-secondary-fixed-variant": "#8f1100",
+                    "inverse-primary": "#c6bfff",
+                    "surface-tint": "#5848cf",
+                    "background": "#f9f9f9",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#8d3f3f",
+                    "error-container": "#ffdad6",
+                    "outline": "#787585",
+                    "surface-variant": "#e2e2e2",
+                    "primary-fixed": "#e4dfff",
+                    "surface-bright": "#f9f9f9",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdad3",
+                    "on-tertiary-fixed-variant": "#782f30",
+                    "outline-variant": "#c8c4d6",
+                    "on-secondary-container": "#590700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"],
+                    "mono": ["Source Code Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .cloud-shadow {
+            box-shadow: 0 12px 24px rgba(27, 27, 27, 0.04);
+        }
+        .risk-gradient {
+            background: linear-gradient(90deg, #5140c8 0%, #fd583b 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed-variant">
+<!-- SideNavBar -->
+<aside class="flex flex-col h-full fixed left-0 top-0 h-screen w-64 border-r-0 bg-slate-50 dark:bg-slate-900 z-50">
+<div class="p-8">
+<h1 class="text-2xl font-bold tracking-tighter text-[#5140C8] dark:text-[#6A5BE2]">RiskCanvas</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold mt-1">The Financial Architect</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 overflow-y-auto no-scrollbar">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-['Inter'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-['Inter'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Analysis
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#5140C8] dark:text-[#6A5BE2] font-bold border-r-2 border-[#5140C8] font-['Inter'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="insert_chart">insert_chart</span>
+                Fear Index
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-['Inter'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+                Calculator
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-['Inter'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+                Stress Test
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200 font-['Inter'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm tracking-tight shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Analysis
+            </button>
+<div class="mt-8 flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-white shadow-sm">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional portrait of a financial analyst in a modern office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPyUpRfWi81HL8kHP8KL4dOy9MJBssz5E2WmiNUqmINeZ50KBpPipsXVDrvbe9sJ8AU85HF0g0OokVJe14-pzpQfOM1JvJ5hr60L9jggFbRf2GIQIteOCj6ZKnThCEMT0IBpSvjypcyG7YPUc-x4EoGhY7LioyPm6Gp57CHIS-4Ny0hulnWEcc4O4Cvy52t-RW6Fw9LmUPOwxSL7dr0_m7v_ya6V9LIa__32Bgccj5c7klHytV0sQUffEfZkUUu45JIMGePNjjLDAr"/>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">Alex Mercer</p>
+<p class="text-[10px] text-outline">Lead Architect</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-8 sticky top-0 z-40 ml-64 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-100/50 dark:border-slate-800/50 shadow-sm dark:shadow-none font-['Inter'] leading-relaxed">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-outline transition-all" placeholder="Search market signals..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-400 hover:text-[#5140C8] dark:hover:text-[#6A5BE2] transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-400 hover:text-[#5140C8] dark:hover:text-[#6A5BE2] transition-all">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 max-w-7xl mx-auto space-y-12">
+<!-- Hero: The Sentiment Gauge -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-[2rem] p-10 cloud-shadow relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+<div class="flex justify-between items-start mb-12">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface">Market Sentiment</h2>
+<p class="text-outline font-medium mt-1">Updated 2 minutes ago</p>
+</div>
+<div class="px-4 py-1.5 rounded-full bg-error-container text-on-error-container font-mono text-xs font-bold flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+                        LIVE FEED
+                    </div>
+</div>
+<div class="relative flex flex-col items-center">
+<!-- Gauge Visualization -->
+<div class="relative w-80 h-40 overflow-hidden">
+<div class="absolute top-0 left-0 w-80 h-80 rounded-full border-[32px] border-surface-container-low"></div>
+<div class="absolute top-0 left-0 w-80 h-80 rounded-full border-[32px] border-transparent border-t-primary border-l-primary/60 rotate-[45deg]"></div>
+<div class="absolute top-0 left-0 w-80 h-80 rounded-full border-[32px] border-transparent border-t-secondary/20 -rotate-[45deg]"></div>
+<!-- Needle -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-32 bg-on-surface origin-bottom rotate-[-35deg] transition-transform duration-1000 ease-out">
+<div class="absolute top-0 -left-1.5 w-4 h-4 bg-on-surface rounded-full shadow-lg"></div>
+</div>
+</div>
+<div class="text-center mt-8">
+<span class="text-7xl font-mono font-extrabold tracking-tighter text-on-surface">35</span>
+<div class="text-xl font-bold text-secondary uppercase tracking-widest mt-2">Fear</div>
+</div>
+<!-- Risk Bar (Signature Component) -->
+<div class="w-full mt-12">
+<div class="flex justify-between mb-3 px-1">
+<span class="text-[10px] font-bold text-outline tracking-widest uppercase">Extreme Fear</span>
+<span class="text-[10px] font-bold text-outline tracking-widest uppercase">Neutral</span>
+<span class="text-[10px] font-bold text-outline tracking-widest uppercase">Extreme Greed</span>
+</div>
+<div class="h-3 w-full risk-gradient rounded-full relative">
+<div class="absolute top-1/2 -translate-y-1/2 left-[35%] w-6 h-6 bg-surface-container-lowest rounded-full cloud-shadow border-2 border-primary-container z-10"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Breakdown Bars -->
+<div class="lg:col-span-5 space-y-6">
+<div class="bg-surface-container-low rounded-[1.5rem] p-6">
+<h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-6">Component Breakdown</h3>
+<div class="space-y-6">
+<!-- Component Item -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm font-bold">
+<span class="text-on-surface">Market Momentum</span>
+<span class="font-mono text-primary">Fear</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[30%]"></div>
+</div>
+</div>
+<!-- Component Item -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm font-bold">
+<span class="text-on-surface">Stock Price Strength</span>
+<span class="font-mono text-on-surface">Neutral</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant w-[50%]"></div>
+</div>
+</div>
+<!-- Component Item -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm font-bold">
+<span class="text-on-surface">Safe Haven Demand</span>
+<span class="font-mono text-secondary">Extreme Fear</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[15%]"></div>
+</div>
+</div>
+<!-- Component Item -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm font-bold">
+<span class="text-on-surface">Junk Bond Demand</span>
+<span class="font-mono text-on-surface-variant">Neutral</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant w-[45%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Snapshot Info -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest">Previous Close</p>
+<p class="text-2xl font-mono font-bold mt-1">38</p>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest">1 Year Ago</p>
+<p class="text-2xl font-mono font-bold mt-1 text-primary">72</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Historical Performance Section -->
+<section class="space-y-8">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-extrabold tracking-tight">Index History</h2>
+<div class="flex bg-surface-container-low rounded-full p-1">
+<button class="px-4 py-1.5 text-xs font-bold rounded-full bg-surface-container-lowest shadow-sm text-primary">1M</button>
+<button class="px-4 py-1.5 text-xs font-bold rounded-full text-outline hover:text-on-surface transition-colors">6M</button>
+<button class="px-4 py-1.5 text-xs font-bold rounded-full text-outline hover:text-on-surface transition-colors">1Y</button>
+<button class="px-4 py-1.5 text-xs font-bold rounded-full text-outline hover:text-on-surface transition-colors">ALL</button>
+</div>
+</div>
+<!-- Bento Chart Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+<!-- Main Line Chart (Asymmetric Span) -->
+<div class="lg:col-span-3 bg-white rounded-[2rem] p-8 cloud-shadow min-h-[400px] relative">
+<div class="flex justify-between items-center mb-8">
+<div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-widest">Volatility Trend</span>
+<h3 class="text-lg font-bold">Index Trajectory</h3>
+</div>
+<div class="flex items-center gap-4 font-mono text-xs">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Fear Index</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span>S&amp;P 500 Correlation</span>
+</div>
+</div>
+</div>
+<!-- Decorative Chart SVG -->
+<div class="absolute inset-x-8 bottom-12 h-64">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Background Grid -->
+<line stroke="#f1f1f1" stroke-width="0.5" x1="0" x2="100" y1="25" y2="25"></line>
+<line stroke="#f1f1f1" stroke-width="0.5" x1="0" x2="100" y1="50" y2="50"></line>
+<line stroke="#f1f1f1" stroke-width="0.5" x1="0" x2="100" y1="75" y2="75"></line>
+<!-- Line -->
+<path d="M0 40 Q 10 30, 20 60 T 40 45 T 60 80 T 80 55 T 100 65" fill="none" stroke="#5140c8" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Area under path -->
+<path d="M0 40 Q 10 30, 20 60 T 40 45 T 60 80 T 80 55 T 100 65 V 100 H 0 Z" fill="url(#chart-gradient)" opacity="0.1"></path>
+<defs>
+<lineargradient id="chart-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5140c8"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="absolute bottom-6 left-8 right-8 flex justify-between text-[10px] font-mono text-outline uppercase tracking-wider">
+<span>OCT 2023</span>
+<span>JAN 2024</span>
+<span>APR 2024</span>
+<span>JUL 2024</span>
+<span>OCT 2024</span>
+</div>
+</div>
+<!-- Vertical Sentiment Timeline -->
+<div class="lg:col-span-1 bg-surface-container-low rounded-[2rem] p-8 overflow-hidden relative">
+<h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-8">Key Event Timeline</h3>
+<div class="space-y-10 relative">
+<!-- Vertical Line -->
+<div class="absolute left-2 top-2 bottom-2 w-[1px] bg-outline-variant/30"></div>
+<!-- Event Item -->
+<div class="relative pl-8">
+<div class="absolute left-[3px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary border-4 border-surface-container-low outline outline-1 outline-secondary/20"></div>
+<p class="text-[10px] font-mono text-secondary font-bold">TODAY</p>
+<p class="text-sm font-bold text-on-surface mt-1">Inflation Data Release</p>
+<p class="text-xs text-outline leading-relaxed mt-1">CPI exceeds projections by 0.2%, triggering fear.</p>
+</div>
+<!-- Event Item -->
+<div class="relative pl-8 opacity-60">
+<div class="absolute left-[3px] top-1.5 w-2.5 h-2.5 rounded-full bg-outline-variant border-4 border-surface-container-low"></div>
+<p class="text-[10px] font-mono text-outline font-bold">2 DAYS AGO</p>
+<p class="text-sm font-bold text-on-surface mt-1">Yield Curve Inverts</p>
+<p class="text-xs text-outline leading-relaxed mt-1">Long-term debt stability concerns arise.</p>
+</div>
+<!-- Event Item -->
+<div class="relative pl-8 opacity-40">
+<div class="absolute left-[3px] top-1.5 w-2.5 h-2.5 rounded-full bg-outline-variant border-4 border-surface-container-low"></div>
+<p class="text-[10px] font-mono text-outline font-bold">1 WEEK AGO</p>
+<p class="text-sm font-bold text-on-surface mt-1">Tech Earnings Peak</p>
+<p class="text-xs text-outline leading-relaxed mt-1">Market sentiment hits neutral 52.</p>
+</div>
+</div>
+<!-- Decorative Texture -->
+<div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="architecture">architecture</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-3xl cloud-shadow group hover:bg-primary transition-all duration-300">
+<span class="material-symbols-outlined text-primary group-hover:text-white mb-4 block" data-icon="shield_with_heart">shield_with_heart</span>
+<h4 class="text-lg font-bold group-hover:text-white transition-colors">Risk Mitigation</h4>
+<p class="text-sm text-outline group-hover:text-primary-fixed mt-2 leading-relaxed">During high-fear cycles, shifting to defensive utilities and gold has historically yielded 4% alpha.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl cloud-shadow group hover:bg-primary transition-all duration-300">
+<span class="material-symbols-outlined text-primary group-hover:text-white mb-4 block" data-icon="psychology">psychology</span>
+<h4 class="text-lg font-bold group-hover:text-white transition-colors">Sentiment Lag</h4>
+<p class="text-sm text-outline group-hover:text-primary-fixed mt-2 leading-relaxed">The Fear Index typically leads price reversals by 4-6 trading days in high-volatility regimes.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl cloud-shadow group hover:bg-primary transition-all duration-300">
+<span class="material-symbols-outlined text-primary group-hover:text-white mb-4 block" data-icon="lightbulb">lightbulb</span>
+<h4 class="text-lg font-bold group-hover:text-white transition-colors">Architect's Pick</h4>
+<p class="text-sm text-outline group-hover:text-primary-fixed mt-2 leading-relaxed">Our models suggest "Buying the Fear" when the index drops below 25 for sustained periods.</p>
+</div>
+</section>
+<!-- Footer / Disclosure -->
+<footer class="pt-12 pb-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-outline text-xs max-w-xl text-center md:text-left leading-loose">
+                RiskCanvas is an educational platform. The Fear &amp; Greed Index is a diagnostic tool and does not constitute financial advice. Past performance is not indicative of future results.
+            </div>
+<div class="flex gap-8">
+<a class="text-xs font-bold text-outline hover:text-primary transition-colors" href="#">Data Privacy</a>
+<a class="text-xs font-bold text-outline hover:text-primary transition-colors" href="#">Terms of Use</a>
+<a class="text-xs font-bold text-outline hover:text-primary transition-colors" href="#">API Docs</a>
+</div>
+</footer>
+</main>
+</body></html>
