@@ -296,8 +296,12 @@ export default function FearAndGreed() {
     try {
       const insight = await generateSentimentInsight(liveValue.toFixed(1), drivers);
       setAiInsight(insight);
-    } catch {
-      setAiInsight('Could not load AI analysis. Please check your Gemini API key in the .env file.');
+    } catch (error) {
+      if (error?.message?.includes('429') || error?.message?.includes('fetch')) {
+        setAiInsight('The AI is currently processing high traffic (Rate Limit). Please wait a few seconds and tap again.');
+      } else {
+        setAiInsight('Could not load AI analysis. If you haven\'t added your Gemini API key to Vercel, please add it. Otherwise, click again to retry.');
+      }
     }
     setAiLoading(false);
   }
