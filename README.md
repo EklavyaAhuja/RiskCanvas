@@ -190,7 +190,7 @@ riskcanvas/
 
 ## 🎥 Demo
 
-▶️ [Watch the demo video](https://your-demo-link-here.com)
+▶️ [Watch the demo video](https://www.youtube.com/watch?v=rFgqpPnLvLM)
 
 > If Gemini API quota is exceeded during judging, the demo video shows all AI features working live.
 
