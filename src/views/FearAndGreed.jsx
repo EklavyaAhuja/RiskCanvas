@@ -230,7 +230,8 @@ export default function FearAndGreed() {
 
     const fetchLiveFNG = async () => {
       try {
-        const response = await fetch(process.env.NEXT_PUBLIC_FNG_API);
+        // Fetch from our internal proxy API instead of relying on the Vercel environment variable
+        const response = await fetch("/api/fng");
         const data = await response.json();
         if (data?.data?.[0]?.value) {
           baseValue = Number(data.data[0].value);
