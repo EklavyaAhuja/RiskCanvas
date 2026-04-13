@@ -53,7 +53,7 @@ export default function FloatingChatbot() {
         ...current,
         {
           role: 'assistant',
-          text: 'I could not reach the AI service just now. You can still ask about market basics, and adding your Gemini API key will enable live answers.',
+          text: 'I could not reach the AI service just now. Please try again in a moment.',
         },
       ]);
     }

@@ -94,7 +94,7 @@ export default function AIAnalysis() {
 
     const fetchLiveFNG = async () => {
       try {
-        const response = await fetch('https://api.alternative.me/fng/?limit=1');
+        const response = await fetch('/api/fng');
         const data = await response.json();
         if (data?.data?.[0]?.value) {
           baseScore = Number(data.data[0].value);
@@ -160,7 +160,7 @@ export default function AIAnalysis() {
     } catch {
       setAiInsights(prev => ({
         ...prev,
-        [item.tag]: 'AI analysis requires a valid Gemini API key. Set NEXT_PUBLIC_GEMINI_API_KEY in your .env file.',
+        [item.tag]: 'AI analysis unavailable. Please try again in a moment.',
       }));
     }
     setLoadingInsight(null);
@@ -256,7 +256,7 @@ export default function AIAnalysis() {
                   {/* AI-generated insight */}
                   {aiInsights[item.tag] && (
                     <div className="bg-primary-fixed/30 rounded-xl p-4 mb-4">
-                      <div className="font-mono text-[10px] text-primary tracking-widest font-black mb-1">🤖 GEMINI AI INSIGHT</div>
+                      <div className="font-mono text-[10px] text-primary tracking-widest font-black mb-1">🤖 AI INSIGHT</div>
                       <p className="text-sm text-on-surface leading-relaxed">{aiInsights[item.tag]}</p>
                     </div>
                   )}

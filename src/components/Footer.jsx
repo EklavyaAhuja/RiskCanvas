@@ -3,6 +3,12 @@
 import Link from 'next/link';
 
 export default function Footer() {
+  const handleMethodology = (e) => {
+    e.preventDefault();
+    // Dispatch a custom event that PlatformOverview listens to
+    window.dispatchEvent(new CustomEvent('open-methodology-video'));
+  };
+
   return (
     <footer className="w-full py-12 bg-slate-900 text-white">
       <div className="flex flex-col md:flex-row justify-between items-center px-12 w-full gap-6 max-w-screen-2xl mx-auto">
@@ -23,13 +29,13 @@ export default function Footer() {
           <Link href="/" className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100">Platform</Link>
           <Link href="/simulation" className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100">Simulation</Link>
           <Link href="/ai-analysis" className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100">AI Analysis</Link>
-          <a href="#" className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100">Privacy</a>
-          <a href="#" className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100">Terms</a>
-          <a href="#" className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100">Methodology</a>
+          <button onClick={(e) => e.preventDefault()} className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100 cursor-pointer bg-transparent border-0 font-mono text-xs uppercase tracking-widest">Privacy</button>
+          <button onClick={(e) => e.preventDefault()} className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100 cursor-pointer bg-transparent border-0 font-mono text-xs uppercase tracking-widest">Terms</button>
+          <button onClick={handleMethodology} className="text-slate-400 hover:text-indigo-400 transition-colors opacity-80 hover:opacity-100 cursor-pointer bg-transparent border-0 font-mono text-xs uppercase tracking-widest">Methodology</button>
         </div>
 
         <div className="font-mono text-xs uppercase tracking-widest text-slate-500 opacity-80">
-          © 2024 RiskCanvas. Architectural Financial Education.
+          © 2026 RiskCanvas. Architectural Financial Education.
         </div>
       </div>
     </footer>

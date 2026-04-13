@@ -35,14 +35,15 @@ const companies = [
   { name: "Navi", domain: "navi.com" },
 ];
 
-export function IconCloudDemo() {
-  const images = companies.map(
-    (c) => `https://img.logo.dev/${c.domain}?token=${LOGO_DEV_KEY}&size=128`
-  );
+// Computed once at module level — prevents reloading logos on every liveScore re-render
+const CLOUD_IMAGES = companies.map(
+  (c) => `https://img.logo.dev/${c.domain}?token=${LOGO_DEV_KEY}&size=128`
+);
 
+export function IconCloudDemo() {
   return (
     <div className="relative flex size-full items-center justify-center overflow-hidden">
-      <IconCloud images={images} />
+      <IconCloud images={CLOUD_IMAGES} />
     </div>
   );
 }
@@ -101,7 +102,7 @@ export default function PlatformOverview() {
     let baseScore = 62.8;
     const fetchLiveFNG = async () => {
       try {
-        const response = await fetch('https://api.alternative.me/fng/?limit=1');
+        const response = await fetch('/api/fng');
         const data = await response.json();
         if (data?.data?.[0]?.value) {
           baseScore = Number(data.data[0].value);
@@ -120,6 +121,7 @@ export default function PlatformOverview() {
         return Math.min(100, Math.max(0, parseFloat(nextValue.toFixed(1))));
       });
     }, 3000);
+
     return () => {
       clearInterval(timer);
       clearInterval(syncInterval);
@@ -461,7 +463,7 @@ export default function PlatformOverview() {
         <div className="max-w-screen-xl mx-auto text-center">
           <ScrollReveal>
             <span className="font-mono text-xs text-secondary font-black tracking-widest uppercase mb-4 block">Proprietary Sentiment Analysis</span>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-20">The Market <span className="text-secondary">Fear Index</span></h2>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-20 text-slate-900">The Market <span className="text-secondary">Fear Index</span></h2>
             <div className="relative py-20">
               <div className="h-6 w-full bg-surface-container rounded-full overflow-hidden flex shadow-inner">
                 <div className="h-full w-1/4 bg-primary-fixed opacity-40" />

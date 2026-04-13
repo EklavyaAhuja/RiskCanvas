@@ -112,7 +112,7 @@ export default function Portfolio() {
 
       setAdvice(nextAdvice);
     } catch {
-      setAdvice('AI advice is unavailable right now. Add your Gemini API key to enable live portfolio guidance.');
+      setAdvice('AI advice is unavailable right now. Please try again in a moment.');
     }
 
     setAdviceLoading(false);

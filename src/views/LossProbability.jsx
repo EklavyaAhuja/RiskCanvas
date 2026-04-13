@@ -34,7 +34,7 @@ export default function LossProbability() {
       });
       setAiInsight(insight);
     } catch {
-      setAiInsight('AI analysis requires a valid Gemini API key. Set NEXT_PUBLIC_GEMINI_API_KEY in your .env file.');
+      setAiInsight('AI analysis unavailable. Please try again in a moment.');
     }
     setAiLoading(false);
   }
@@ -168,7 +168,7 @@ export default function LossProbability() {
                 {aiInsight && (
                   <div className="mt-6 rounded-2xl bg-primary-fixed/30 p-5">
                     <div className="mb-2 font-mono text-[10px] font-black uppercase tracking-widest text-primary">
-                      Gemini AI Risk Analysis
+                      AI Risk Analysis
                     </div>
                     <p className="text-sm leading-relaxed text-on-surface">{aiInsight}</p>
                   </div>

@@ -300,7 +300,7 @@ export default function FearAndGreed() {
       if (error?.message?.includes('429') || error?.message?.includes('fetch')) {
         setAiInsight('The AI is currently processing high traffic (Rate Limit). Please wait a few seconds and tap again.');
       } else {
-        setAiInsight('Could not load AI analysis. If you haven\'t added your Gemini API key to Vercel, please add it. Otherwise, click again to retry.');
+        setAiInsight('Could not load AI analysis. If you haven\'t added your Gemini API key, please add it. Otherwise, click again to retry.');
       }
     }
     setAiLoading(false);

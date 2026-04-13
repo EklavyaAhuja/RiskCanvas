@@ -33,8 +33,9 @@ function SmoothScroll() {
       }
 
       const selector = anchor.getAttribute('href');
-      const target = selector ? document.querySelector(selector) : null;
-
+      if (!selector || selector === '#') return;
+      let target = null;
+      try { target = document.querySelector(selector); } catch { return; }
       if (!target) {
         return;
       }

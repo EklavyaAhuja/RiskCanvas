@@ -134,17 +134,22 @@ class Particle {
 
 interface ParticleTextEffectProps {
   words?: string[]
+  loop?: boolean
+  stopped?: boolean
 }
 
-const DEFAULT_WORDS = ["HELLO", "WELCOME", "TO", "RISKCANVAS"]
+const DEFAULT_WORDS = ["WELCOME", "TO", "RISKCANVAS"]
 
-export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffectProps) {
+export function ParticleTextEffect({ words = DEFAULT_WORDS, loop = false, stopped = false }: ParticleTextEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
   const particlesRef = useRef<Particle[]>([])
   const frameCountRef = useRef(0)
   const wordIndexRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false })
+  const stoppedRef = useRef(stopped)
+  // Keep stoppedRef in sync so the rAF loop exits as soon as isFadingOut flips
+  useEffect(() => { stoppedRef.current = stopped }, [stopped])
 
   const pixelSteps = 6
   const drawAsPoints = true
@@ -252,6 +257,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   }
 
   const animate = () => {
+    // Stop the loop immediately if stopped flag is set
+    if (stoppedRef.current) return;
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -313,6 +321,12 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
         if (wordIndexRef.current < words.length - 1) {
           wordIndexRef.current++;
           nextWord(words[wordIndexRef.current], canvas);
+          frameCountRef.current = 0;
+        }
+        // If loop is false, do nothing once we're on the last word — just hold it
+        else if (loop) {
+          wordIndexRef.current = 0;
+          nextWord(words[0], canvas);
           frameCountRef.current = 0;
         }
       }

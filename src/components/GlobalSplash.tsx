@@ -8,6 +8,14 @@ export default function GlobalSplash({ children }: { children: React.ReactNode }
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
 
+  const skip = () => {
+    setIsFadingOut(true);
+    setTimeout(() => {
+      setShowSplash(false);
+      setTimeout(() => setContentVisible(true), 50);
+    }, 800);
+  };
+
   useEffect(() => {
     // Begin fade-out with 800ms before actually unmounting the splash
     const fadeTimer = setTimeout(() => setIsFadingOut(true), 14200);
@@ -34,7 +42,7 @@ export default function GlobalSplash({ children }: { children: React.ReactNode }
             opacity: isFadingOut ? 0 : 1,
           }}
         >
-          <ParticleTextEffect words={["WELCOME", "TO", "RISKCANVAS"]} />
+          <ParticleTextEffect words={["WELCOME", "TO", "RISKCANVAS"]} stopped={isFadingOut} />
           <div
             className="absolute bottom-16 flex flex-col items-center gap-3"
             style={{
@@ -48,6 +56,17 @@ export default function GlobalSplash({ children }: { children: React.ReactNode }
             </svg>
             <span className="text-[#8B92A5] text-xs font-mono tracking-widest">LOADING</span>
           </div>
+          {/* Skip button — top right corner */}
+          <button
+            onClick={skip}
+            className="absolute top-6 right-8 text-[#8B92A5] hover:text-white text-xs font-mono tracking-widest uppercase transition-colors duration-200 flex items-center gap-1.5 group"
+            style={{ opacity: isFadingOut ? 0 : 1, transition: "opacity 0.4s ease" }}
+          >
+            Skip Animation
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       )}
 
