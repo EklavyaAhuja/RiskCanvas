@@ -21,7 +21,7 @@ export async function GET() {
     const fngData = json.fear_and_greed;
 
     // Convert the CNN rating into the format the frontend expects (matching alternative.me schema)
-    const convertRating = (rating) => {
+    const convertRating = (rating: string) => {
       const formatted = rating.replace(/_/g, ' ').toLowerCase();
       if (formatted.includes('extreme fear')) return 'Extreme Fear';
       if (formatted.includes('extreme greed')) return 'Extreme Greed';
